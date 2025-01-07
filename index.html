@@ -1,0 +1,44 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Worcoder PWA</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">The Worcoder</h1>
+
+    <label for="dataInput" class="label">Data</label>
+    <textarea id="dataInput" class="textInput" placeholder="Enter plain text data..."></textarea>
+
+    <div class="buttonRow">
+      <button id="encodeButton" class="button">Encode ↓</button>
+      <button id="decodeButton" class="button">Decode ↑</button>
+    </div>
+
+    <label for="mnemonicInput" class="label">Mnemonic</label>
+    <textarea id="mnemonicInput" class="textInput" placeholder="Enter mnemonic words..."></textarea>
+  </div>
+
+  <script src="main.min.js"></script>
+  <script>
+    // Register the service worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful with scope:', registration.scope);
+          })
+          .catch(error => {
+            console.error('ServiceWorker registration failed:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
